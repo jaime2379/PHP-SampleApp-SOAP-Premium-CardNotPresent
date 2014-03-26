@@ -35,6 +35,7 @@ global $credentials;
 global $_identityToken;
 global $_serviceKey;
 global $_serviceId;
+global $_workflowId;
 global $_applicationProfileId;
 global $_merchantProfileId;
 global $_serviceInformation;
@@ -71,8 +72,10 @@ require_once ABSPATH.'/ConfigFiles/ReadConfigValues.php';
 
  $_baseURL = Settings::URL_BaseURL;
 require_once ABSPATH.'/WebServiceProxies/CWSClient.php';
-        $client = new CWSClient($_identityToken, $_serviceKey, $_merchantProfileId[0]['ProfileId'], $_merchantProfileId[0]['ServiceId'], $_applicationProfileId);
-
+if (!Settings::UseWorkflow)
+	$client = new CWSClient($_identityToken, $_serviceKey, $_merchantProfileId[0]['ProfileId'], $_merchantProfileId[0]['ServiceId'], $_applicationProfileId);
+else
+	$client = new CWSClient($_identityToken, $_serviceKey, $_merchantProfileId[0]['ProfileId'], $_workflowid[0]['Serviceid'], $_applicationProfileId);
 $_serviceInformation = $client->getServiceInformation();
 
 if (isset($_serviceInformation->BankcardServices)){

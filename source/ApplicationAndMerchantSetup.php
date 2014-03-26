@@ -34,6 +34,7 @@ date_default_timezone_set(Settings::Timezone);
 global $_identityToken;
 global $_serviceKey;
 global $_serviceId;
+global $_workflowId;
 global $_applicationProfileId;
 global $_merchantProfileId;
 global $_serviceInformation;
